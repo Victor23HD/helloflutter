@@ -1,4 +1,5 @@
 // controller/login_controller.dart
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:helloflutter/models/login_model.dart';
 
@@ -13,21 +14,21 @@ class LoginController {
     required BuildContext context,
     required Function setState,
   }) async {
-    setState(() {
-    });
+    setState(() {});
 
-    final isValid = validateLogin(email, password);
+    final isValid = validateLogin(email, password); // TODO
     if (isValid) {
-      final response = await loginModel.apiLogin(email: email, password: password);
-      setState(() {
-      });
+      final response = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
-      if (response) {
+      setState(() {});
+      if (response.user != null) {
         Navigator.pushNamed(context, "/home");
       }
     } else {
-      setState(() {
-      });
+      setState(() {});
     }
   }
 

@@ -1,11 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 class LoginModel {
-  Future<bool> apiLogin({
-    required String email,
-    required String password,
-  }) async {
-    await Future.delayed(Duration(seconds: 3));
-    return true;
-  }
 
   String? validateEmail(String? email) {
     return email != null && email.isNotEmpty ? null : "Email inválido...";
